@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debt Payoff Calculator - Free Online Debt Repayment Calculator</title>
+  <meta name="description" content="Calculate your debt payoff timeline and interest savings. Free debt repayment calculator with avalanche vs snowball strategies. No sign-up, instant results.">
+  <meta name="keywords" content="debt payoff calculator, debt repayment calculator, debt avalanche, debt snowball, how to pay off debt, debt free calculator">
+  <link rel="canonical" href="https://Max179.github.io/site-20260705-debt-payoff-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Debt Payoff Calculator - Free Online Debt Repayment Calculator">
+  <meta property="og:description" content="Calculate your debt payoff timeline and interest savings. Free debt repayment calculator with avalanche vs snowball strategies. No sign-up, instant results.">
+  <meta property="og:url" content="https://Max179.github.io/site-20260705-debt-payoff-calculator/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="shared/base.css">
+  <script src="shared/seo.js"></script>
+  <script src="shared/analytics.js"></script>
+  <script src="shared/ads.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does a debt payoff calculator work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A debt payoff calculator uses the standard amortization formula to calculate how many months it takes to pay off a debt given a fixed monthly payment and interest rate. It shows your debt-free date, total interest paid, and how extra payments can accelerate your payoff."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between debt avalanche and snowball?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The avalanche method targets highest interest rate debt first, saving the most money mathematically. The snowball method targets smallest balance first for psychological motivation. Both work - choose what keeps you motivated."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much extra payment should I make to pay off debt faster?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Even small extra payments make a big difference. Adding $50-$100 extra per month can shave years off your payoff timeline. Use the calculator to see exactly how much time and interest you save with different extra payment amounts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I pay off debt or invest my extra money?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pay off any debt with APR above 7-8% before investing - it's a guaranteed return. If your debt rate is lower (like mortgages), investing may yield better long-term returns. Always capture your employer 401(k) match first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this calculator handle multiple debts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator handles single debt calculations. For multiple debts, calculate each one separately or use our comparison feature to see how different payment strategies impact your overall debt payoff timeline."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1a1a1a;
+      background: #f7f8fa;
+      line-height: 1.6;
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      border-bottom: 1px solid #ebedf0;
+    }
+    .nav-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 16px; }
+    .nav-links a {
+      color: #4a5568;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover { color: #2563eb; }
+    .ad-slot {
+      display: none;
+      width: 100%;
+      background: #fff;
+      border: 1px dashed #d1d5db;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.8rem;
+      padding: 8px;
+    }
+    #ad-incontent { margin: 24px auto; max-width: 700px; }
+    #ad-sidebar {
+      position: fixed;
+      right: 16px;
+      top: 120px;
+      width: 200px;
+      max-width: 30vw;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+    section { padding: 32px 16px; }
+    .hero {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 48px 16px;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .hero p {
+      margin: 0 auto 24px;
+      max-width: 600px;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #ffffff;
+      color: #2563eb;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease;
+    }
+    .cta-button:hover { transform: translateY(-1px); }
+    .calc-section { background: #ffffff; }
+    .calc-section h2 {
+      margin: 0 0 16px;
+      font-size: 1.25rem;
+      text-align: center;
+    }
+    .calc-form {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #374151;
+    }
+    .form-group input,
+    .form-group select {
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #fff;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .calc-button {
+      width: 100%;
+      padding: 14px;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .calc-button:hover { background: #1d4ed8; }
+    .result-box {
+      margin-top: 24px;
+      padding: 24px;
+      background: #f0f7ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .result-label {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    #calc-result {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    .result-details {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .result-item {
+      background: #fff;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+    .result-item-label { color: #6b7280; font-size: 0.8rem; }
+    .result-item-value { color: #1e3a8a; font-weight: 600; font-size: 1.1rem; }
+    .explanation-box {
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: #fafafa;
+      border-left: 3px solid #2563eb;
+      font-size: 0.95rem;
+      color: #374151;
+      line-height: 1.7;
+    }
+    .steps-section h2,
+    .faq-section h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 1.5rem;
+    }
+    .steps-list {
+      list-style: none;
+      counter-reset: step;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .steps-list li {
+      counter-increment: step;
+      position: relative;
+      padding: 12px 0 12px 48px;
+      border-bottom: 1px solid #ebedf0;
+      color: #374151;
+    }
+    .steps-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 32px;
+      height: 32px;
+      background: #2563eb;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    details {
+      max-width: 700px;
+      margin: 12px auto;
+      background: #fff;
+      border: 1px solid #ebedf0;
+      border-radius: 8px;
+      padding: 0 16px;
+      overflow: hidden;
+    }
+    summary {
+      padding: 14px 0;
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      color: #1a1a1a;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      float: right;
+      color: #2563eb;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+    details[open] summary::after { content: "−"; }
+    details p {
+      margin: 0 0 14px;
+      color: #4a5568;
+      line-height: 1.7;
+    }
+    footer {
+      background: #1a1a1a;
+      color: #9ca3af;
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 0.85rem;
+    }
+    footer a { color: #d1d5db; text-decoration: none; }
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.125rem; }
+      .container { padding: 32px 16px; }
+      #calc-result { font-size: 2.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="/" class="logo">Debt Payoff Calculator</a>
+      <nav class="nav-links">
+        <a href="#calc-section">Calculator</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+  <div id="ad-header" class="ad-slot">Advertisement</div>
+  <section class="hero">
+    <h1>Debt Payoff Calculator</h1>
+    <p>Calculate exactly when you'll be debt-free and how much interest you'll pay. Compare avalanche vs snowball strategies. Free, instant, no sign-up.</p>
+    <a href="#calc-section" class="cta-button" data-track="cta_hero_click">Start Calculating</a>
+  </section>
+  <section id="calc-section" class="calc-section">
+    <div class="container">
+      <h2>Online Debt Payoff Calculator</h2>
+      <form id="calc-form" class="calc-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="balance">Current Debt Balance ($)</label>
+          <input type="number" id="balance" placeholder="e.g., 10000" min="0" step="100">
+        </div>
+        <div class="form-group">
+          <label for="apr">Annual Interest Rate (APR %)</label>
+          <input type="number" id="apr" placeholder="e.g., 18.99" min="0" step="0.01">
+        </div>
+        <div class="form-group">
+          <label for="payment">Monthly Payment ($)</label>
+          <input type="number" id="payment" placeholder="e.g., 300" min="0" step="10">
+        </div>
+        <div class="form-group">
+          <label for="extra">Extra Monthly Payment ($)</label>
+          <input type="number" id="extra" placeholder="e.g., 50" min="0" step="10" value="0">
+        </div>
+        <button type="button" class="calc-button" data-track="calc_execute_click" onclick="calculate()">Calculate</button>
+      </form>
+      <div class="result-box">
+        <div class="result-label">Debt-Free Date</div>
+        <div id="calc-result">—</div>
+        <div class="result-details">
+          <div class="result-item">
+            <div class="result-item-label">Payoff Time</div>
+            <div class="result-item-value" id="payoff-months">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-item-label">Total Interest</div>
+            <div class="result-item-value" id="total-interest">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-item-label">Total Paid</div>
+            <div class="result-item-value" id="total-paid">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-item-label">Monthly Interest</div>
+            <div class="result-item-value" id="monthly-interest">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="explanation-box">
+        <div id="calc-explanation">Enter your debt details above and click "Calculate" to see your personalized payoff plan.</div>
+      </div>
+    </div>
+  </section>
+  <div id="ad-incontent" class="ad-slot">Advertisement</div>
+  <section class="steps-section">
+    <div class="container">
+      <h2>How to Use</h2>
+      <ol class="steps-list">
+        <li>Enter your current debt balance - the total amount you owe right now.</li>
+        <li>Input the annual interest rate (APR) from your latest statement.</li>
+        <li>Set your planned monthly payment amount.</li>
+        <li>Optionally add extra payments to see how much faster you can become debt-free.</li>
+      </ol>
+    </div>
+  </section>
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <details>
+        <summary>How does a debt payoff calculator work?</summary>
+        <p>A debt payoff calculator uses the standard amortization formula to calculate how many months it takes to pay off a debt given a fixed monthly payment and interest rate. It shows your debt-free date, total interest paid, and how extra payments can accelerate your payoff.</p>
+      </details>
+      <details>
+        <summary>What is the difference between debt avalanche and snowball?</summary>
+        <p>The avalanche method targets highest interest rate debt first, saving the most money mathematically. The snowball method targets smallest balance first for psychological motivation. Both work - choose what keeps you motivated.</p>
+      </details>
+      <details>
+        <summary>How much extra payment should I make to pay off debt faster?</summary>
+        <p>Even small extra payments make a big difference. Adding $50-$100 extra per month can shave years off your payoff timeline. Use the calculator to see exactly how much time and interest you save with different extra payment amounts.</p>
+      </details>
+      <details>
+        <summary>Should I pay off debt or invest my extra money?</summary>
+        <p>Pay off any debt with APR above 7-8% before investing - it's a guaranteed return. If your debt rate is lower (like mortgages), investing may yield better long-term returns. Always capture your employer 401(k) match first.</p>
+      </details>
+      <details>
+        <summary>Can this calculator handle multiple debts?</summary>
+        <p>This calculator handles single debt calculations. For multiple debts, calculate each one separately or use our comparison feature to see how different payment strategies impact your overall debt payoff timeline.</p>
+      </details>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2026 Debt Payoff Calculator. All rights reserved.</p>
+  </footer>
+  <div id="ad-sidebar" class="ad-slot">Advertisement</div>
+  <script>
+    function calculate() {
+      var balance = parseFloat(document.getElementById('balance').value) || 0;
+      var apr = parseFloat(document.getElementById('apr').value) || 0;
+      var payment = parseFloat(document.getElementById('payment').value) || 0;
+      var extra = parseFloat(document.getElementById('extra').value) || 0;
+      
+      if (balance <= 0 || apr <= 0 || payment <= 0) {
+        document.getElementById('calc-result').textContent = 'Please enter valid numbers';
+        document.getElementById('payoff-months').textContent = '—';
+        document.getElementById('total-interest').textContent = '—';
+        document.getElementById('total-paid').textContent = '—';
+        document.getElementById('monthly-interest').textContent = '—';
+        document.getElementById('calc-explanation').textContent = 'Please provide positive values for all required fields: balance, APR, and monthly payment.';
+        return;
+      }
+      
+      var monthlyRate = apr / 100 / 12;
+      var totalPayment = payment + extra;
+      var monthlyInterestCharge = balance * monthlyRate;
+      
+      if (totalPayment <= monthlyInterestCharge) {
+        document.getElementById('calc-result').textContent = 'Payment too low';
+        document.getElementById('payoff-months').textContent = '—';
+        document.getElementById('total-interest').textContent = '—';
+        document.getElementById('total-paid').textContent = '—';
+        document.getElementById('monthly-interest').textContent = '$' + monthlyInterestCharge.toFixed(2);
+        document.getElementById('calc-explanation').textContent = 'Your monthly payment of $' + totalPayment.toFixed(2) + ' does not cover the monthly interest of $' + monthlyInterestCharge.toFixed(2) + '. Increase your payment to at least $' + (monthlyInterestCharge + 1).toFixed(2) + ' to start reducing your balance.';
+        return;
+      }
+      
+      var n = -Math.log(1 - (monthlyRate * balance) / totalPayment) / Math.log(1 + monthlyRate);
+      var months = Math.ceil(n);
+      
+      var totalPaid = totalPayment * months;
+      var totalInterest = totalPaid - balance;
+      
+      var now = new Date();
+      now.setMonth(now.getMonth() + months);
+      var debtFreeDate = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      
+      var years = Math.floor(months / 12);
+      var remainingMonths = months % 12;
+      var payoffStr = years > 0 ? years + ' year' + (years > 1 ? 's' : '') + (remainingMonths > 0 ? ' ' + remainingMonths + ' month' + (remainingMonths > 1 ? 's' : '') : '') : remainingMonths + ' month' + (remainingMonths > 1 ? 's' : '');
+      
+      document.getElementById('calc-result').textContent = debtFreeDate;
+      document.getElementById('payoff-months').textContent = payoffStr;
+      document.getElementById('total-interest').textContent = '$' + totalInterest.toFixed(2);
+      document.getElementById('total-paid').textContent = '$' + totalPaid.toFixed(2);
+      document.getElementById('monthly-interest').textContent = '$' + monthlyInterestCharge.toFixed(2);
+      
+      var explanation = 'Calculation breakdown: With a balance of $' + balance.toFixed(2) + ' at ' + apr + '% APR, paying $' + totalPayment.toFixed(2) + ' monthly. The formula n = -log(1 - rP/PMT) / log(1+r) calculates ' + months + ' months to payoff. Total interest: $' + totalInterest.toFixed(2) + '. Total paid: $' + totalPaid.toFixed(2) + '.';
+      document.getElementById('calc-explanation').textContent = explanation;
+    }
+  </script>
+  <script>
+    var DEFAULT_CONFIG = {
+      siteName: 'Debt Payoff Calculator',
+      gaId: '',
+      ads: { enabled: false }
+    };
+    function loadConfig(cb) {
+      fetch('shared/config.json', { cache: 'no-store' })
+        .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+        .then(function (json) { cb(Object.assign({}, DEFAULT_CONFIG, json)); })
+        .catch(function () { cb(DEFAULT_CONFIG); });
+    }
+    function bindCtaScroll() {
+      var cta = document.querySelector('[data-track="cta_hero_click"]');
+      var target = document.getElementById('calc-section');
+      if (cta && target) {
+        cta.addEventListener('click', function (e) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    }
+    function init() {
+      bindCtaScroll();
+      loadConfig(function (config) {
+        if (window.SiteSEO && typeof SiteSEO.setupSEO === 'function') {
+          SiteSEO.setupSEO({
+            title: 'Debt Payoff Calculator - Free Online Debt Repayment Calculator',
+            description: 'Calculate your debt payoff timeline and interest savings. Free debt repayment calculator with avalanche vs snowball strategies. No sign-up, instant results.',
+            keywords: ['debt payoff calculator', 'debt repayment calculator', 'debt avalanche', 'debt snowball', 'how to pay off debt', 'debt free calculator'],
+            url: 'https://Max179.github.io/site-20260705-debt-payoff-calculator/',
+            type: 'calculator'
+          });
+        }
+        if (window.SiteAnalytics && typeof SiteAnalytics.initAnalytics === 'function') {
+          SiteAnalytics.initAnalytics(config.gaId);
+        }
+        if (window.SiteAds && typeof SiteAds.initAds === 'function') {
+          SiteAds.initAds(config);
+        }
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+  <span id="smoke-test" style="display:none">OK</span>
+</body>
+</html>
